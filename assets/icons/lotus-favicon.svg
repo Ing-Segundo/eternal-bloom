@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#1c224d"/>
+      <stop offset="100%" stop-color="#060918"/>
+    </radialGradient>
+    <linearGradient id="petal" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#f8f6fc"/>
+      <stop offset="55%" stop-color="#f4b8ce"/>
+      <stop offset="100%" stop-color="#c8b6ff"/>
+    </linearGradient>
+    <radialGradient id="core" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#fff4d6"/>
+      <stop offset="100%" stop-color="#ebd09e"/>
+    </radialGradient>
+  </defs>
+  <circle cx="32" cy="32" r="30" fill="url(#bg)" stroke="#ebd09e" stroke-opacity="0.45" stroke-width="1.5"/>
+  <path d="M32 13 C38 23, 38 35, 32 45 C26 35, 26 23, 32 13 Z" fill="url(#petal)"/>
+  <path d="M32 45 C22 39, 16 28, 19 19 C26 23, 30 33, 32 45 Z" fill="url(#petal)" opacity="0.88"/>
+  <path d="M32 45 C42 39, 48 28, 45 19 C38 23, 34 33, 32 45 Z" fill="url(#petal)" opacity="0.88"/>
+  <path d="M32 46 C19 45, 11 37, 12 28 C20 29, 27 36, 32 46 Z" fill="url(#petal)" opacity="0.72"/>
+  <path d="M32 46 C45 45, 53 37, 52 28 C44 29, 37 36, 32 46 Z" fill="url(#petal)" opacity="0.72"/>
+  <circle cx="32" cy="43" r="3.5" fill="url(#core)"/>
+</svg>

@@ -67,7 +67,7 @@
           if (!this.whisperEl.classList.contains("is-visible")) {
             this.whisperEl.hidden = true;
           }
-        }, 360);
+        }, 320);
       }, 3600);
     }
 
@@ -176,7 +176,7 @@
           const rect = card.getBoundingClientRect();
           card.style.setProperty("--mouse-x", `${e.clientX - rect.left}px`);
           card.style.setProperty("--mouse-y", `${e.clientY - rect.top}px`);
-        });
+        }, { passive: true });
 
         const toggleCard = (e) => {
           const isLit = card.classList.toggle("is-lit");

@@ -44,10 +44,10 @@
 
 @keyframes lotusAuraPulse {
   0%, 100% {
-    filter: drop-shadow(0 0 12px rgba(244, 184, 206, 0.35));
+    filter: drop-shadow(0 0 10px rgba(244, 184, 206, 0.35));
   }
   50% {
-    filter: drop-shadow(0 0 26px rgba(235, 208, 158, 0.68));
+    filter: drop-shadow(0 0 22px rgba(235, 208, 158, 0.65));
   }
 }
 

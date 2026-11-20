@@ -65,16 +65,15 @@
         tl.to(".intro-content", {
           y: -26,
           opacity: 0,
-          filter: "blur(8px)",
-          duration: 0.85,
+          duration: 0.75,
           ease: "power2.inOut"
         })
         .to(introScreen, {
           opacity: 0,
-          scale: 1.06,
-          duration: 0.95,
+          scale: 1.04,
+          duration: 0.85,
           ease: "power2.inOut"
-        }, "-=0.45");
+        }, "-=0.4");
       });
     }
 
@@ -83,7 +82,6 @@
       document.body.classList.remove("intro-locked");
       if (hud) hud.classList.add("is-visible");
 
-      // Encender fuegos artificiales ambientales y coreografía de bienvenida
       this.fireworks.setAmbientEnabled(true);
       this.fireworks.launchChoreography(4, 420);
 
@@ -122,7 +120,6 @@
         });
       });
 
-      // Aparición progresiva de flores desde el suelo
       window.gsap.utils.toArray(".flower-unit").forEach((flower, idx) => {
         window.gsap.from(flower, {
           scaleY: 0.15,
@@ -139,7 +136,6 @@
         });
       });
 
-      // Tarjetas de recordatorios escalonadas
       window.gsap.from(".reminder-card", {
         y: 28,
         opacity: 0,
@@ -163,13 +159,12 @@
         if (typeof window.gsap === "undefined") return;
         window.gsap.fromTo(
           lines,
-          { opacity: 0, y: 18, filter: "blur(4px)" },
+          { opacity: 0, y: 18 },
           {
             opacity: 1,
             y: 0,
-            filter: "blur(0px)",
-            duration: 1.1,
-            stagger: 0.55,
+            duration: 1.05,
+            stagger: 0.5,
             ease: "power2.out"
           }
         );
@@ -201,10 +196,10 @@
 
         if (mount) {
           const rect = mount.getBoundingClientRect();
-          this.atmosphere.spawnInteractionBurst(rect.left + rect.width / 2, rect.top + rect.height / 2, 22);
+          this.atmosphere.spawnInteractionBurst(rect.left + rect.width / 2, rect.top + rect.height / 2, 20);
         }
 
-        this.fireworks.launchChoreography(7, 380);
+        this.fireworks.launchChoreography(6, 380);
       };
 
       if (btn) {

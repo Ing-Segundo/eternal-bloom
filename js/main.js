@@ -13,7 +13,6 @@
       CelestialChoreography
     } = window.EternalBloom;
 
-    // 1. Inicializar lienzos atmosféricos (estrellas, luciérnagas, pétalos y fuegos artificiales)
     const starCanvas = document.getElementById("starfield-canvas");
     const petalsCanvas = document.getElementById("petals-canvas");
     const fireworksCanvas = document.getElementById("fireworks-canvas");
@@ -24,7 +23,6 @@
     const fireworks = new CelestialFireworks(fireworksCanvas);
     fireworks.start();
 
-    // 2. Construir los jardines botánicos SVG
     const garden = new BotanicalGarden();
 
     const heroStrip = document.getElementById("hero-garden-strip");
@@ -48,13 +46,11 @@
       { type: "daisy", scale: 0.92, label: "Margarita de medianoche", message: "Permítete descansar y recibir cosas bonitas sin culpa." }
     ]);
 
-    // 3. Montar la Flor de Loto Final dentro de la carta
     const finaleLotusMount = document.getElementById("finale-lotus-mount");
     if (finaleLotusMount) {
       finaleLotusMount.innerHTML = garden.createLotusSVG(1.18, false);
     }
 
-    // 4. Activar interacciones sensoriales y coreografía GSAP
     const interactions = new CelestialInteractions({ atmosphere, fireworks });
     interactions.init();
 
