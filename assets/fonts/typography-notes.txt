@@ -1,0 +1,8 @@
+ETERNAL BLOOM — Tipografía Editorial
+====================================
+Las fuentes principales se cargan de forma optimizada desde Google Fonts en index.html:
+- Display / Poética: 'Cormorant Garamond' (Pesos 300, 400, 500, 600 + Itálicas)
+- UI / Lectura: 'Plus Jakarta Sans' (Pesos 300, 400, 500, 600)
+
+En caso de ejecución sin conexión a internet, css/main.css incluye pilas tipográficas
+de respaldo elegantes ('Georgia', 'Times New Roman', serif y system-ui, sans-serif).

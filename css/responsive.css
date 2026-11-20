@@ -1,0 +1,101 @@
+/* ==========================================================================
+   ETERNAL BLOOM — Diseño Adaptable (Móvil, Tablet y Escritorio)
+   ========================================================================== */
+
+@media (max-width: 991.98px) {
+  .section-space {
+    padding: 82px 0;
+  }
+
+  .celestial-hero {
+    padding-top: 96px;
+    text-align: center;
+  }
+
+  .hero-lead {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hero-hints {
+    justify-content: center;
+  }
+
+  .interactive-moon-stage {
+    width: 215px;
+    height: 215px;
+  }
+
+  .ring-outer {
+    width: 206px;
+    height: 206px;
+  }
+
+  .ring-inner {
+    width: 174px;
+    height: 174px;
+  }
+
+  .moon-sphere {
+    width: 140px;
+    height: 140px;
+  }
+
+  .main-floral-meadow {
+    min-height: 250px;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .intro-moon-wrap {
+    top: 7%;
+    right: 8%;
+    width: 76px;
+    height: 76px;
+  }
+
+  .ambient-hud {
+    top: auto;
+    bottom: 14px;
+    right: 12px;
+    left: 12px;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  .hud-pill {
+    padding: 8px 13px;
+    font-size: 0.78rem;
+  }
+
+  .btn-celestial-primary,
+  .btn-celestial-secondary {
+    width: 100%;
+    max-width: 340px;
+    padding: 14px 22px;
+    font-size: 0.9rem;
+  }
+
+  .garden-strip {
+    min-height: 145px;
+    padding: 0 2vw;
+  }
+
+  .main-floral-meadow {
+    min-height: 215px;
+    padding: 20px 8px 0;
+  }
+
+  .letter-envelope-frame {
+    padding: 9px;
+    border-radius: 22px;
+  }
+
+  .letter-paper {
+    padding: 28px 22px;
+  }
+
+  .celestial-footer {
+    padding-bottom: 84px;
+  }
+}

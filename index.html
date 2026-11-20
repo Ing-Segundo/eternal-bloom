@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#060918" />
+  <meta name="description" content="Eternal Bloom — Un jardín celestial nocturno creado para iluminar un día especial con calma, luz y cariño." />
+  <title>ETERNAL BLOOM — Un pequeño universo para ti</title>
+
+  <link rel="icon" type="image/svg+xml" href="assets/icons/lotus-favicon.svg" />
+
+  <!-- Tipografías Editoriales -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <!-- Bootstrap 5.3 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
+
+  <!-- Arquitectura CSS Modular -->
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+</head>
+<body class="intro-locked" data-moon-mood="silver">
+
+  <!-- Capas Atmosféricas Fijas (Cielo, Partículas, Fuegos Artificiales y Pétalos) -->
+  <div class="celestial-backdrop" aria-hidden="true">
+    <div class="sky-gradient-layer"></div>
+    <div class="nebula-aura-layer"></div>
+    <canvas id="starfield-canvas"></canvas>
+    <canvas id="fireworks-canvas"></canvas>
+    <canvas id="petals-canvas"></canvas>
+  </div>
+
+  <!-- Estrellas Interactivas con Mensajes Positivos -->
+  <div id="interactive-stars-layer" class="interactive-stars-layer" aria-label="Estrellas luminosas interactivas"></div>
+
+  <!-- Tooltip Poético Flotante al Tocar Estrellas o Flores -->
+  <div id="celestial-whisper" class="celestial-whisper" role="status" aria-live="polite" hidden>
+    <span class="whisper-star-icon" aria-hidden="true">✦</span>
+    <p id="celestial-whisper-text" class="whisper-text"></p>
+  </div>
+
+  <!-- =====================================================================
+       1. PANTALLA INICIAL CINEMATOGRÁFICA
+       ===================================================================== -->
+  <section id="intro-screen" class="intro-screen" aria-label="Bienvenida cinematográfica">
+    <div class="intro-moon-wrap" aria-hidden="true">
+      <div class="intro-moon-halo"></div>
+      <div class="intro-moon-disc"></div>
+    </div>
+
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-11 col-md-9 col-lg-7 text-center intro-content">
+          <span class="eyebrow-tag intro-stagger">ETERNAL BLOOM</span>
+          <div class="intro-divider intro-stagger" aria-hidden="true">
+            <span></span><i>✦</i><span></span>
+          </div>
+          <blockquote class="intro-quote intro-stagger">
+            “Hay detalles que no necesitan una ocasión especial, solamente a alguien especial para quien crearlos.”
+          </blockquote>
+          <p class="intro-subnote intro-stagger">
+            Tómate un respiro. Este pequeño cielo nocturno fue encendido pensando en ti.
+          </p>
+          <div class="intro-action intro-stagger">
+            <button id="btn-enter-universe" type="button" class="btn-celestial-primary">
+              <span class="btn-glow-ring" aria-hidden="true"></span>
+              <span class="btn-label">Descubrir este pequeño universo</span>
+              <svg class="btn-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M12 3L13.9 9.1L20 11L13.9 12.9L12 19L10.1 12.9L4 11L10.1 9.1L12 3Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =====================================================================
+       CONTROLES AMBIENTALES FLOTANTES (DISCRETOS Y FUNCIONALES)
+       ===================================================================== -->
+  <nav id="ambient-hud" class="ambient-hud" aria-label="Controles del cielo nocturno">
+    <button id="btn-fireworks-show" type="button" class="hud-pill" title="Lanzar espectáculo de fuegos artificiales">
+      <span class="hud-dot hud-dot-gold" aria-hidden="true"></span>
+      <span class="hud-text">Iluminar el cielo</span>
+    </button>
+    <button id="btn-moon-aura" type="button" class="hud-pill" title="Cambiar iluminación ambiental de la luna">
+      <span class="hud-dot hud-dot-lavender" aria-hidden="true"></span>
+      <span class="hud-text" id="moon-mood-label">Luz: Plata</span>
+    </button>
+    <button id="btn-calm-mode" type="button" class="hud-pill hud-pill-icon" aria-pressed="false" title="Alternar modo de movimiento suave">
+      <span class="hud-text">Calma</span>
+    </button>
+  </nav>
+
+  <!-- =====================================================================
+       EXPERIENCIA PRINCIPAL
+       ===================================================================== -->
+  <main id="main-universe" class="main-universe" tabindex="-1">
+
+    <!-- HERO DEL JARDÍN CELESTIAL Y LUNA INTERACTIVA -->
+    <header id="celestial-hero" class="celestial-hero section-space">
+      <div class="container">
+        <div class="row align-items-center justify-content-between gy-5">
+          <div class="col-lg-7 hero-copy-col">
+            <span class="eyebrow-tag reveal-up">JARDÍN NOCTURNO · SERENIDAD</span>
+            <h1 class="hero-title reveal-up">
+              Incluso en los días más difíciles, existen pequeñas luces capaces de abrazar el alma.
+            </h1>
+            <p class="hero-lead reveal-up">
+              Explora este rincón con calma: toca las estrellas que titilan en lo alto, haz florecer cada pétalo del jardín o cambia el resplandor de la luna cuando necesites un momento de paz.
+            </p>
+            <div class="hero-hints reveal-up">
+              <span class="hint-chip">✦ Toca una estrella</span>
+              <span class="hint-chip">❀ Haz clic en las flores</span>
+              <span class="hint-chip">☾ Toca la luna</span>
+            </div>
+          </div>
+
+          <div class="col-lg-5 d-flex justify-content-center">
+            <button id="interactive-moon" type="button" class="interactive-moon-stage" aria-label="Luna luminosa interactiva: presiona para cambiar la iluminación ambiental">
+              <span class="moon-orbit-ring ring-outer" aria-hidden="true"></span>
+              <span class="moon-orbit-ring ring-inner" aria-hidden="true"></span>
+              <span class="moon-sphere" aria-hidden="true">
+                <svg viewBox="0 0 200 200" class="moon-svg">
+                  <defs>
+                    <radialGradient id="moonSurface" cx="38%" cy="35%" r="65%">
+                      <stop offset="0%" stop-color="#fffdf9"/>
+                      <stop offset="48%" stop-color="#f5ecd8"/>
+                      <stop offset="85%" stop-color="#d8c7eb"/>
+                      <stop offset="100%" stop-color="#9e8cc7"/>
+                    </radialGradient>
+                  </defs>
+                  <circle cx="100" cy="100" r="82" fill="url(#moonSurface)"/>
+                  <circle cx="72" cy="74" r="14" fill="#d4c4e3" opacity="0.24"/>
+                  <circle cx="126" cy="88" r="19" fill="#c7b5dc" opacity="0.2"/>
+                  <circle cx="94" cy="130" r="11" fill="#d4c4e3" opacity="0.22"/>
+                  <circle cx="62" cy="112" r="7" fill="#c7b5dc" opacity="0.18"/>
+                  <circle cx="134" cy="128" r="8" fill="#d4c4e3" opacity="0.18"/>
+                </svg>
+              </span>
+              <span class="moon-caption">Toca la luna para cambiar la luz</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pradera Superior de Flores SVG Interactivas -->
+      <div id="hero-garden-strip" class="garden-strip" aria-label="Jardín floral iluminado"></div>
+    </header>
+
+    <!-- =====================================================================
+         5. MENSAJE EMOTIVO PRINCIPAL
+         ===================================================================== -->
+    <section id="emotional-message" class="emotional-section section-space" aria-labelledby="emotional-heading">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-12 col-lg-9 col-xl-8">
+            <article class="sanctuary-card">
+              <div class="sanctuary-header text-center">
+                <span class="eyebrow-tag">PARA TI, SIN PRISA</span>
+                <h2 id="emotional-heading" class="section-title">Un respiro en medio del ruido</h2>
+                <img src="assets/images/celestial-crest.svg" alt="" class="crest-ornament" aria-hidden="true" />
+              </div>
+
+              <div id="poetic-message-body" class="poetic-body">
+                <p class="poetic-paragraph" data-poetic-line>
+                  A veces los días no salen como esperamos, y está bien no tener siempre la misma energía, las mismas ganas o las respuestas para todo.
+                </p>
+
+                <div class="paragraph-ornament" aria-hidden="true">
+                  <span></span><i class="ornament-flower">❀</i><span></span>
+                </div>
+
+                <p class="poetic-paragraph" data-poetic-line>
+                  Quiero recordarte que eres una persona valiosa y que mereces momentos bonitos, tranquilidad y muchas razones para sonreír.
+                </p>
+
+                <div class="paragraph-ornament" aria-hidden="true">
+                  <span></span><i class="ornament-star">✦</i><span></span>
+                </div>
+
+                <p class="poetic-paragraph" data-poetic-line>
+                  No necesitas tener un día perfecto para merecer cosas maravillosas.
+                </p>
+
+                <div class="paragraph-ornament" aria-hidden="true">
+                  <span></span><i class="ornament-flower">❁</i><span></span>
+                </div>
+
+                <p class="poetic-paragraph poetic-highlight" data-poetic-line>
+                  Ojalá este pequeño detalle consiga regalarte un instante bonito, porque incluso cuando el cielo parece nublado, las estrellas siguen estando ahí.
+                </p>
+              </div>
+
+              <div class="sanctuary-footer text-center">
+                <button id="btn-replay-message" type="button" class="btn-subtle-link">
+                  ↻ Volver a desplegar las palabras
+                </button>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================================
+         4. JARDÍN FLORAL ANIMADO EN CRECIMIENTO
+         ===================================================================== -->
+    <section id="botanical-sanctuary" class="botanical-section section-space" aria-labelledby="garden-heading">
+      <div class="container">
+        <div class="row justify-content-center text-center mb-4">
+          <div class="col-lg-8">
+            <span class="eyebrow-tag reveal-up">JARDÍN DE ESPERANZA</span>
+            <h2 id="garden-heading" class="section-title reveal-up">Cada flor crece a su propio ritmo</h2>
+            <p class="section-subtitle reveal-up">
+              Algunas abren sus pétalos en silencio bajo la luna; otras guardan destellos dorados para cuando más los necesitas. Toca cualquiera de ellas para liberar su luz.
+            </p>
+          </div>
+        </div>
+
+        <!-- Escenario Botánico Principal con Rosas, Loto, Margaritas y Flores Luminosas -->
+        <div id="main-floral-meadow" class="main-floral-meadow" role="region" aria-label="Jardín interactivo de flores nocturnas"></div>
+      </div>
+    </section>
+
+    <!-- =====================================================================
+         6. SECCIÓN DE PEQUEÑOS RECORDATORIOS BONITOS
+         ===================================================================== -->
+    <section id="reminders-section" class="reminders-section section-space" aria-labelledby="reminders-heading">
+      <div class="container">
+        <div class="row justify-content-center text-center mb-5">
+          <div class="col-lg-8">
+            <span class="eyebrow-tag reveal-up">PEQUEÑOS RECORDATORIOS</span>
+            <h2 id="reminders-heading" class="section-title reveal-up">Para guardar en los días nublados</h2>
+            <p class="section-subtitle reveal-up">
+              Presiona cada tarjeta para encender su estrella interior y descubrir un pensamiento extra pensado para acompañarte.
+            </p>
+          </div>
+        </div>
+
+        <div class="row g-4" id="reminders-grid">
+          <div class="col-12 col-md-6 col-lg-4">
+            <article class="reminder-card" tabindex="0" role="button" aria-pressed="false">
+              <div class="card-glow-sheen" aria-hidden="true"></div>
+              <div class="reminder-top">
+                <span class="reminder-number">01</span>
+                <span class="reminder-blossom" aria-hidden="true">✦</span>
+              </div>
+              <h3 class="reminder-quote">“No tienes que resolverlo todo hoy.”</h3>
+              <p class="reminder-extra">Dar un solo paso pequeño —o simplemente respirar hoy— ya es suficiente.</p>
+            </article>
+          </div>
+
+          <div class="col-12 col-md-6 col-lg-4">
+            <article class="reminder-card" tabindex="0" role="button" aria-pressed="false">
+              <div class="card-glow-sheen" aria-hidden="true"></div>
+              <div class="reminder-top">
+                <span class="reminder-number">02</span>
+                <span class="reminder-blossom" aria-hidden="true">❀</span>
+              </div>
+              <h3 class="reminder-quote">“También mereces descansar.”</h3>
+              <p class="reminder-extra">El descanso no es una recompensa pendiente; es parte de cuidar lo que eres.</p>
+            </article>
+          </div>
+
+          <div class="col-12 col-md-6 col-lg-4">
+            <article class="reminder-card" tabindex="0" role="button" aria-pressed="false">
+              <div class="card-glow-sheen" aria-hidden="true"></div>
+              <div class="reminder-top">
+                <span class="reminder-number">03</span>
+                <span class="reminder-blossom" aria-hidden="true">✦</span>
+              </div>
+              <h3 class="reminder-quote">“Tu presencia tiene un valor especial.”</h3>
+              <p class="reminder-extra">Incluso en silencio, tu forma de ser deja huella bonita en quienes te rodean.</p>
+            </article>
+          </div>
+
+          <div class="col-12 col-md-6 col-lg-4">
+            <article class="reminder-card" tabindex="0" role="button" aria-pressed="false">
+              <div class="card-glow-sheen" aria-hidden="true"></div>
+              <div class="reminder-top">
+                <span class="reminder-number">04</span>
+                <span class="reminder-blossom" aria-hidden="true">❁</span>
+              </div>
+              <h3 class="reminder-quote">“Los días difíciles no definen toda tu historia.”</h3>
+              <p class="reminder-extra">Son solo una nube pasajera frente a un cielo mucho más amplio y luminoso.</p>
+            </article>
+          </div>
+
+          <div class="col-12 col-md-6 col-lg-4">
+            <article class="reminder-card" tabindex="0" role="button" aria-pressed="false">
+              <div class="card-glow-sheen" aria-hidden="true"></div>
+              <div class="reminder-top">
+                <span class="reminder-number">05</span>
+                <span class="reminder-blossom" aria-hidden="true">✦</span>
+              </div>
+              <h3 class="reminder-quote">“Siempre hay espacio para comenzar de nuevo.”</h3>
+              <p class="reminder-extra">Cada amanecer trae permiso limpio para volver a intentarlo con suavidad.</p>
+            </article>
+          </div>
+
+          <div class="col-12 col-md-6 col-lg-4">
+            <article class="reminder-card" tabindex="0" role="button" aria-pressed="false">
+              <div class="card-glow-sheen" aria-hidden="true"></div>
+              <div class="reminder-top">
+                <span class="reminder-number">06</span>
+                <span class="reminder-blossom" aria-hidden="true">❀</span>
+              </div>
+              <h3 class="reminder-quote">“Mereces cosas bonitas, incluso en los días normales.”</h3>
+              <p class="reminder-extra">No hace falta esperar una fecha marcada para recibir un gesto lleno de cariño.</p>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================================
+         8. CARTA FINAL Y FLOR DE LOTO EN APERTURA CON FUEGOS ARTIFICIALES
+         ===================================================================== -->
+    <section id="final-letter-section" class="letter-section section-space" aria-labelledby="letter-heading">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-12 col-lg-9 col-xl-8">
+            <div class="letter-envelope-frame">
+              <div class="letter-corner-flora top-left" aria-hidden="true"></div>
+              <div class="letter-corner-flora top-right" aria-hidden="true"></div>
+
+              <div class="letter-paper">
+                <div class="text-center mb-4">
+                  <span class="eyebrow-tag">UNA CARTA PARA TI</span>
+                  <h2 id="letter-heading" class="section-title">Hasta que vuelva la calma</h2>
+                </div>
+
+                <div class="letter-content">
+                  <p>Este pequeño rincón fue creado pensando en ti.</p>
+                  <p>
+                    Quizá no pueda cambiar cómo ha sido tu día, pero sí quería regalarte algo diferente, algo que te recordara que todavía existen detalles sencillos capaces de hacer bonito un momento.
+                  </p>
+                  <p>
+                    Nunca olvides lo valiosa que eres y que mereces encontrar tranquilidad, alegría y muchas cosas bonitas en tu camino.
+                  </p>
+                  <p class="letter-signature">Con mucho cariño.</p>
+                </div>
+
+                <!-- Flor de Loto Final con Apertura Gradual y Espectáculo Celeste -->
+                <div class="finale-lotus-sanctuary text-center">
+                  <div id="finale-lotus-mount" class="finale-lotus-mount" role="button" tabindex="0" aria-label="Flor de loto celestial: presiona para abrir sus pétalos e iluminar el cielo"></div>
+                  <button id="btn-finale-celebration" type="button" class="btn-celestial-secondary mt-3">
+                    <span>Encender el cielo y abrir el loto</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="celestial-footer text-center">
+    <div class="container">
+      <p class="footer-note">ETERNAL BLOOM · Creado con luz, calma y cariño.</p>
+    </div>
+  </footer>
+
+  <!-- GSAP & ScrollTrigger -->
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+
+  <!-- Arquitectura JavaScript ES6+ Modular -->
+  <script src="js/particles.js"></script>
+  <script src="js/fireworks.js"></script>
+  <script src="js/flowers.js"></script>
+  <script src="js/interactions.js"></script>
+  <script src="js/animations.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
